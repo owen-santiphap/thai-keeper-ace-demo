@@ -1,0 +1,64 @@
+{
+ "EventGraph": {
+  "K2Node_Event_0 AddEvent|EventBeginPlay": [
+   0,
+   0,
+   660,
+   200
+  ],
+  "K2Node_Event_1 AddEvent|Collision|EventActorBeginOverlap": [
+   0,
+   500,
+   360,
+   200
+  ],
+  "K2Node_Event_2 AddEvent|EventTick": [
+   0,
+   1000,
+   2060,
+   200
+  ],
+  "K2Node_CustomEvent_0 AddEvent|Custom|GuideToSpot": [
+   0,
+   1500,
+   1310,
+   508
+  ],
+  "K2Node_ComponentBoundEvent_0 AddEvent|OnLLMReady(KeeperLLM)": [
+   0,
+   2308,
+   660,
+   200
+  ],
+  "K2Node_ComponentBoundEvent_1 AddEvent|OnTokenStreamed(KeeperLLM)": [
+   0,
+   2808,
+   1610,
+   659
+  ],
+  "K2Node_ComponentBoundEvent_2 AddEvent|OnResponseComplete(KeeperLLM)": [
+   0,
+   3767,
+   670,
+   200
+  ],
+  "K2Node_ComponentBoundEvent_3 AddEvent|OnToolCalled(KeeperLLM)": [
+   0,
+   4267,
+   660,
+   200
+  ],
+  "K2Node_ComponentBoundEvent_4 AddEvent|OnLLMError(KeeperLLM)": [
+   0,
+   4767,
+   1360,
+   416
+  ],
+  "K2Node_CallFunction_81 |SetBubble": [
+   0,
+   5483,
+   660,
+   200
+  ]
+ }
+}

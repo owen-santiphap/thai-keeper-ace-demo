@@ -1,0 +1,18 @@
+# Voice service (Python 3.12 was used). Install torch/torchaudio with CUDA FIRST, see docs/SETUP.md.
+numpy
+sounddevice
+soundfile
+faster-whisper
+ctranslate2
+transformers
+accelerate
+huggingface_hub
+gguf
+pythainlp
+# ThonburianTTS dependencies (from its requirements.txt)
+f5-tts
+cached-path
+librosa
+pydub
+vocos
+scipy

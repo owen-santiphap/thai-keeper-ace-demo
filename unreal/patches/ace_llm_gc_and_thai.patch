@@ -1,0 +1,45 @@
+diff -ruN a/LLMPlugin/Private/LLMInferenceTask.cpp b/LLMPlugin/Private/LLMInferenceTask.cpp
+--- a/LLMPlugin/Private/LLMInferenceTask.cpp	2026-10-29 09:38:56.834902507 +0000
++++ b/LLMPlugin/Private/LLMInferenceTask.cpp	2026-10-29 09:38:57.191902537 +0000
+@@ -41,6 +41,10 @@
+     }
+ 
+     ULLMInferenceTask* infTask = NewObject<ULLMInferenceTask>();
++    // Keep the task alive while its worker threads run: nothing else references it, so GC could
++    // free it mid-inference (crash: TWeakObjectPtr on a freed object in RunChatInference).
++    // Released in OnBothThreadsComplete.
++    infTask->AddToRoot();
+     infTask->m_worldContextObject = WorldContextObject;
+     infTask->m_chatObj = ChatObj;
+     infTask->m_infOptions = Options;
+@@ -92,6 +96,7 @@
+     }
+ 
+     SetReadyToDestroy();
++    RemoveFromRoot();
+ }
+ 
+ int32 ULLMInferenceTask::RunChatInference()
+@@ -132,7 +137,7 @@
+     // Create the wrapper object and also populate the tool call list under the hood
+     ULLMChatMessage* assistantMessage = ULLMChatMessage::CreateChatMessage(m_worldContextObject,
+                                                                            (ELLMChatRole)responseRole,
+-                                                                           FString(responseContent));
++                                                                           FString(UTF8_TO_TCHAR(responseContent ? responseContent : "")));
+     assistantMessage->SetNativeObject(assistantEntry);
+     assistantMessage->BuildToolCallList(m_worldContextObject);
+ 
+diff -ruN a/LLMPlugin/Private/LLMToolCallList.cpp b/LLMPlugin/Private/LLMToolCallList.cpp
+--- a/LLMPlugin/Private/LLMToolCallList.cpp	2026-10-29 09:38:56.834902507 +0000
++++ b/LLMPlugin/Private/LLMToolCallList.cpp	2026-10-29 09:38:57.219902540 +0000
+@@ -44,7 +44,9 @@
+ 		ace_toolCallGetName(currentTool, &name);
+ 		ace_toolCallGetArguments(currentTool, &arguments);
+ 
+-		ULLMToolCall* ueWrapper = ULLMToolCall::CreateToolCall(WorldContextObject, List, currentTool, FString(id), FString(name), FString(arguments));
++		// The SDK returns UTF-8; FString(const char*) would widen each byte and garble Thai text.
++		ULLMToolCall* ueWrapper = ULLMToolCall::CreateToolCall(WorldContextObject, List, currentTool,
++			FString(UTF8_TO_TCHAR(id ? id : "")), FString(UTF8_TO_TCHAR(name ? name : "")), FString(UTF8_TO_TCHAR(arguments ? arguments : "")));
+ 		List->m_toolCalls.Add(ueWrapper);
+ 	}
+ 

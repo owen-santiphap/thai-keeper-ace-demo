@@ -1,0 +1,10 @@
+Begin Object Class=/Script/UnrealEd.EdGraphNode_Comment Name="EdGraphNode_Comment_0"
+   CommentColor=(R=0.450,G=0.150,B=0.550,A=1.000000)
+   FontSize=28
+   NodePosX=0
+   NodePosY=0
+   NodeWidth=5220
+   NodeHeight=4072
+   NodeComment="UPDATE WALK  |  เดินไปจุดถัดไป · เปิดประตูเมื่อถึง · Arrive เมื่อถึงปลายทาง"
+   NodeGuid=44A989AC001C43CC97738A6602AA3782
+End Object

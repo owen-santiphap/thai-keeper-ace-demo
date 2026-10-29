@@ -1,0 +1,28 @@
+{
+ "EventGraph": {
+  "K2Node_Event_0 AddEvent|EventBeginPlay": [
+   0,
+   0,
+   1317,
+   1000
+  ],
+  "K2Node_Event_1 AddEvent|Collision|EventActorBeginOverlap": [
+   0,
+   1300,
+   360,
+   200
+  ],
+  "K2Node_Event_2 AddEvent|EventTick": [
+   0,
+   1800,
+   360,
+   200
+  ],
+  "K2Node_CustomEvent_0 AddEvent|Custom|LightLantern": [
+   0,
+   2300,
+   1317,
+   526
+  ]
+ }
+}

@@ -1,0 +1,15 @@
+# Heavy / generated
+downloads/
+.venv*/
+__pycache__/
+*.pyc
+05_voice_tests/out/
+# Unreal project (students create it locally; see docs/SETUP.md)
+TheKeepr_Demo/
+*.log
+# Third-party clone made by scripts/setup_models.py
+tools/thonburian-tts/
+# Secrets / local configs: never commit
+mcp.json
+.env
+*.token
